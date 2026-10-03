@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,12 +78,22 @@
       cursor: pointer;
     }
 
+    .quantity button {
+      padding: 5px 10px;
+      margin: 0 5px;
+    }
+
     .cart {
       background: white;
       padding: 15px;
       margin-top: 25px;
       border-radius: 10px;
       font-size: 18px;
+    }
+
+    .cart-item {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
     }
   </style>
 </head>
@@ -119,7 +128,7 @@
 
   <h2>Products</h2>
 
-  <div class="products" id="products">
+  <div class="products">
 
     <div class="product">
       <h3>Halal Chicken</h3>
@@ -151,9 +160,13 @@
   </div>
 
   <div class="cart">
-    🛒 Cart: <span id="cartCount">0</span> items
-    <br>
-    Total: $<span id="cartTotal">0.00</span>
+    <h2>🛒 Cart</h2>
+
+    <div id="cartItems">
+      Cart is empty
+    </div>
+
+    <h3>Total: $<span id="cartTotal">0.00</span></h3>
   </div>
 
 </div>
@@ -162,23 +175,74 @@
   let cart = [];
 
   function addToCart(name, price) {
-    cart.push({
-      name: name,
-      price: price
+    let existingItem = cart.find(function(item) {
+      return item.name === name;
     });
+
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({
+        name: name,
+        price: price,
+        quantity: 1
+      });
+    }
 
     updateCart();
   }
 
+  function increaseQuantity(index) {
+    cart[index].quantity++;
+    updateCart();
+  }
+
+  function decreaseQuantity(index) {
+    cart[index].quantity--;
+
+    if (cart[index].quantity <= 0) {
+      cart.splice(index, 1);
+    }
+
+    updateCart();
+  }
+
+  function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+
   function updateCart() {
-    let count = cart.length;
+    let cartItems = document.getElementById("cartItems");
     let total = 0;
 
-    cart.forEach(function(item) {
-      total += item.price;
-    });
+    if (cart.length === 0) {
+      cartItems.innerHTML = "Cart is empty";
+    } else {
+      cartItems.innerHTML = "";
 
-    document.getElementById("cartCount").textContent = count;
+      cart.forEach(function(item, index) {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <strong>${item.name}</strong>
+            <br>
+            $${item.price.toFixed(2)} × ${item.quantity}
+            = $${itemTotal.toFixed(2)}
+
+            <div class="quantity">
+              <button onclick="decreaseQuantity(${index})">−</button>
+              ${item.quantity}
+              <button onclick="increaseQuantity(${index})">+</button>
+              <button onclick="removeItem(${index})">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
     document.getElementById("cartTotal").textContent =
       total.toFixed(2);
   }
