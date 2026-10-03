@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,18 +159,28 @@
 </div>
 
 <script>
-  let cartCount = 0;
-  let cartTotal = 0;
+  let cart = [];
 
   function addToCart(name, price) {
-    cartCount++;
-    cartTotal += price;
+    cart.push({
+      name: name,
+      price: price
+    });
 
-    document.getElementById("cartCount").textContent = cartCount;
+    updateCart();
+  }
+
+  function updateCart() {
+    let count = cart.length;
+    let total = 0;
+
+    cart.forEach(function(item) {
+      total += item.price;
+    });
+
+    document.getElementById("cartCount").textContent = count;
     document.getElementById("cartTotal").textContent =
-      cartTotal.toFixed(2);
-
-    alert(name + " added to cart!");
+      total.toFixed(2);
   }
 
   function searchProducts() {
