@@ -6,94 +6,254 @@
   <title>MZ Halal Grocery</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #f6f8f6;
+      color: #222;
     }
 
     header {
-      background: #198754;
+      background: linear-gradient(135deg, #087f3f, #19a463);
       color: white;
-      padding: 20px;
+      padding: 22px 16px 28px;
       text-align: center;
     }
 
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 7px 0 0;
+      opacity: .9;
+    }
+
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
-      padding: 20px;
+      padding: 20px 16px 50px;
+    }
+
+    .search-box {
+      position: relative;
+      margin-top: -5px;
+      margin-bottom: 25px;
     }
 
     .search {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      padding: 15px 18px;
+      border: none;
+      border-radius: 14px;
       font-size: 16px;
+      outline: none;
+      box-shadow: 0 3px 15px rgba(0,0,0,.08);
+    }
+
+    h2 {
+      margin: 22px 0 14px;
+      font-size: 21px;
     }
 
     .categories {
       display: flex;
       gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
+      overflow-x: auto;
+      padding-bottom: 5px;
     }
 
     .category {
       background: white;
       border: 1px solid #ddd;
-      padding: 12px 18px;
-      border-radius: 8px;
+      padding: 11px 16px;
+      border-radius: 30px;
       cursor: pointer;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .category:hover,
+    .category.active {
+      background: #198754;
+      color: white;
+      border-color: #198754;
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
     }
 
     .product {
       background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+      transition: .2s;
+    }
+
+    .product:hover {
+      transform: translateY(-3px);
+    }
+
+    .product-icon {
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eef8f1;
+      border-radius: 12px;
+      font-size: 55px;
+      margin-bottom: 14px;
+    }
+
+    .product h3 {
+      margin: 5px 0;
+    }
+
+    .product p {
+      color: #666;
+      margin: 7px 0;
     }
 
     .price {
-      color: #198754;
+      color: #198754 !important;
       font-size: 20px;
       font-weight: bold;
     }
 
     button {
-      background: #198754;
-      color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 6px;
       cursor: pointer;
+      border-radius: 9px;
     }
 
-    .quantity button {
-      padding: 5px 10px;
-      margin: 0 5px;
+    .add-btn {
+      width: 100%;
+      background: #198754;
+      color: white;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .add-btn:hover {
+      background: #146c43;
     }
 
     .cart {
       background: white;
-      padding: 15px;
-      margin-top: 25px;
-      border-radius: 10px;
-      font-size: 18px;
+      padding: 18px;
+      margin-top: 30px;
+      border-radius: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-count {
+      background: #198754;
+      color: white;
+      padding: 6px 11px;
+      border-radius: 20px;
+      font-size: 14px;
     }
 
     .cart-item {
-      border-bottom: 1px solid #ddd;
-      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      padding: 13px 0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .quantity {
+      margin-top: 9px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .quantity button {
+      background: #e9f5ed;
+      color: #198754;
+      padding: 6px 10px;
+      font-weight: bold;
+    }
+
+    .remove {
+      background: #ffe8e8 !important;
+      color: #dc3545 !important;
+    }
+
+    .checkout {
+      width: 100%;
+      background: #198754;
+      color: white;
+      padding: 14px;
+      margin-top: 15px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .empty {
+      color: #777;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 25px;
+      display: none;
+      z-index: 100;
+    }
+
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 25px;
+      }
+
+      .products {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .product {
+        padding: 12px;
+      }
+
+      .product-icon {
+        height: 85px;
+        font-size: 42px;
+      }
+
+      .product h3 {
+        font-size: 16px;
+      }
+
+      .price {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
@@ -101,58 +261,94 @@
 <body>
 
 <header>
-  <h1>MZ Halal Grocery</h1>
-  <p>Fresh & Halal Grocery</p>
+  <h1>🥬 MZ Halal Grocery</h1>
+  <p>Fresh • Halal • Delivered</p>
 </header>
 
 <div class="container">
 
-  <input
-    class="search"
-    type="text"
-    placeholder="Search groceries..."
-    onkeyup="searchProducts()"
-    id="searchBox"
-  >
+  <div class="search-box">
+    <input
+      class="search"
+      type="text"
+      id="searchBox"
+      placeholder="🔍 Search groceries..."
+      onkeyup="searchProducts()"
+    >
+  </div>
 
   <h2>Categories</h2>
 
   <div class="categories">
-    <div class="category">Meat</div>
-    <div class="category">Dairy</div>
-    <div class="category">Rice & Grains</div>
-    <div class="category">Pantry</div>
-    <div class="category">Drinks</div>
-    <div class="category">Snacks</div>
+    <button class="category active" onclick="filterCategory('All', this)">All</button>
+    <button class="category" onclick="filterCategory('Meat', this)">🥩 Meat</button>
+    <button class="category" onclick="filterCategory('Dairy', this)">🥛 Dairy</button>
+    <button class="category" onclick="filterCategory('Rice', this)">🍚 Rice & Grains</button>
+    <button class="category" onclick="filterCategory('Pantry', this)">🥫 Pantry</button>
+    <button class="category" onclick="filterCategory('Drinks', this)">🥤 Drinks</button>
+    <button class="category" onclick="filterCategory('Snacks', this)">🍿 Snacks</button>
   </div>
 
-  <h2>Products</h2>
+  <h2>Popular Products</h2>
 
   <div class="products">
 
-    <div class="product">
+    <div class="product" data-category="Meat">
+      <div class="product-icon">🍗</div>
       <h3>Halal Chicken</h3>
       <p>Fresh halal chicken</p>
       <p class="price">$8.99</p>
-      <button onclick="addToCart('Halal Chicken', 8.99)">
+      <button class="add-btn" onclick="addToCart('Halal Chicken', 8.99)">
         Add to Cart
       </button>
     </div>
 
-    <div class="product">
+    <div class="product" data-category="Rice">
+      <div class="product-icon">🍚</div>
       <h3>Basmati Rice</h3>
       <p>Premium basmati rice</p>
       <p class="price">$12.99</p>
-      <button onclick="addToCart('Basmati Rice', 12.99)">
+      <button class="add-btn" onclick="addToCart('Basmati Rice', 12.99)">
         Add to Cart
       </button>
     </div>
 
-    <div class="product">
+    <div class="product" data-category="Snacks">
+      <div class="product-icon">🍿</div>
       <h3>Halal Snacks</h3>
       <p>Delicious halal snacks</p>
       <p class="price">$4.99</p>
-      <button onclick="addToCart('Halal Snacks', 4.99)">
+      <button class="add-btn" onclick="addToCart('Halal Snacks', 4.99)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product" data-category="Dairy">
+      <div class="product-icon">🥛</div>
+      <h3>Fresh Milk</h3>
+      <p>Fresh whole milk</p>
+      <p class="price">$3.99</p>
+      <button class="add-btn" onclick="addToCart('Fresh Milk', 3.99)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product" data-category="Pantry">
+      <div class="product-icon">🫒</div>
+      <h3>Olive Oil</h3>
+      <p>Extra virgin olive oil</p>
+      <p class="price">$9.99</p>
+      <button class="add-btn" onclick="addToCart('Olive Oil', 9.99)">
+        Add to Cart
+      </button>
+    </div>
+
+    <div class="product" data-category="Drinks">
+      <div class="product-icon">🥤</div>
+      <h3>Mango Drink</h3>
+      <p>Refreshing mango drink</p>
+      <p class="price">$2.99</p>
+      <button class="add-btn" onclick="addToCart('Mango Drink', 2.99)">
         Add to Cart
       </button>
     </div>
@@ -160,24 +356,43 @@
   </div>
 
   <div class="cart">
-    <h2>🛒 Cart</h2>
+
+    <div class="cart-header">
+      <h2>🛒 Your Cart</h2>
+      <span class="cart-count" id="cartCount">0 items</span>
+    </div>
 
     <div id="cartItems">
-      Cart is empty
+      <div class="empty">Your cart is empty</div>
     </div>
 
     <h3>Total: $<span id="cartTotal">0.00</span></h3>
+
+    <button class="checkout" onclick="checkout()">
+      Proceed to Checkout
+    </button>
+
   </div>
 
 </div>
 
+<div class="toast" id="toast">Added to cart!</div>
+
 <script>
   let cart = [];
 
+  function showToast(message) {
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 1500);
+  }
+
   function addToCart(name, price) {
-    let existingItem = cart.find(function(item) {
-      return item.name === name;
-    });
+    let existingItem = cart.find(item => item.name === name);
 
     if (existingItem) {
       existingItem.quantity++;
@@ -190,6 +405,7 @@
     }
 
     updateCart();
+    showToast(name + " added to cart!");
   }
 
   function increaseQuantity(index) {
@@ -213,59 +429,104 @@
   }
 
   function updateCart() {
-    let cartItems = document.getElementById("cartItems");
+    const cartItems = document.getElementById("cartItems");
+    const cartTotal = document.getElementById("cartTotal");
+    const cartCount = document.getElementById("cartCount");
+
     let total = 0;
+    let itemCount = 0;
 
     if (cart.length === 0) {
-      cartItems.innerHTML = "Cart is empty";
+      cartItems.innerHTML =
+        '<div class="empty">Your cart is empty</div>';
     } else {
       cartItems.innerHTML = "";
 
-      cart.forEach(function(item, index) {
-        let itemTotal = item.price * item.quantity;
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+
         total += itemTotal;
+        itemCount += item.quantity;
 
         cartItems.innerHTML += `
           <div class="cart-item">
             <strong>${item.name}</strong>
             <br>
             $${item.price.toFixed(2)} × ${item.quantity}
-            = $${itemTotal.toFixed(2)}
+            = <strong>$${itemTotal.toFixed(2)}</strong>
 
             <div class="quantity">
               <button onclick="decreaseQuantity(${index})">−</button>
-              ${item.quantity}
+              <span>${item.quantity}</span>
               <button onclick="increaseQuantity(${index})">+</button>
-              <button onclick="removeItem(${index})">Remove</button>
+              <button class="remove" onclick="removeItem(${index})">
+                Remove
+              </button>
             </div>
           </div>
         `;
       });
     }
 
-    document.getElementById("cartTotal").textContent =
-      total.toFixed(2);
+    cartTotal.textContent = total.toFixed(2);
+
+    cartCount.textContent =
+      itemCount + (itemCount === 1 ? " item" : " items");
   }
 
   function searchProducts() {
-    let search = document
+    const search = document
       .getElementById("searchBox")
       .value
       .toLowerCase();
 
-    let products = document.querySelectorAll(".product");
+    const products = document.querySelectorAll(".product");
 
-    products.forEach(function(product) {
-      let text = product.textContent.toLowerCase();
+    products.forEach(product => {
+      const text = product.textContent.toLowerCase();
 
-      if (text.includes(search)) {
-        product.style.display = "block";
+      product.style.display =
+        text.includes(search) ? "" : "none";
+    });
+  }
+
+  function filterCategory(category, button) {
+    document.querySelectorAll(".category").forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".product").forEach(product => {
+      if (
+        category === "All" ||
+        product.dataset.category === category
+      ) {
+        product.style.display = "";
       } else {
         product.style.display = "none";
       }
     });
   }
+
+  function checkout() {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    let total = document.getElementById("cartTotal").textContent;
+
+    alert(
+      "Thank you for shopping with MZ Halal Grocery!\\n\\n" +
+      "Order Total: $" + total +
+      "\\n\\nCheckout page can be connected next."
+    );
+  }
+
+  updateCart();
 </script>
 
 </body>
 </html>
+
