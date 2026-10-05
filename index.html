@@ -74,6 +74,23 @@
       font-weight: bold;
     }
 
+    .status {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .verified {
+      color: #198754;
+    }
+
+    .not-verified {
+      color: #d68910;
+    }
+
+    .not-halal {
+      color: #dc3545;
+    }
+
     button {
       background: #198754;
       color: white;
@@ -141,6 +158,7 @@
     <div class="product" data-category="dairy">
       <h3>Milk</h3>
       <p>Fresh milk</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.99</p>
       <button onclick="addToCart('Milk', 4.99)">Add to Cart</button>
     </div>
@@ -148,6 +166,7 @@
     <div class="product" data-category="dairy">
       <h3>Cheese</h3>
       <p>Cheddar cheese</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$5.99</p>
       <button onclick="addToCart('Cheese', 5.99)">Add to Cart</button>
     </div>
@@ -155,6 +174,7 @@
     <div class="product" data-category="dairy">
       <h3>Yogurt</h3>
       <p>Plain yogurt</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$3.99</p>
       <button onclick="addToCart('Yogurt', 3.99)">Add to Cart</button>
     </div>
@@ -162,6 +182,7 @@
     <div class="product" data-category="dairy">
       <h3>Half & Half</h3>
       <p>Creamy half & half</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Half & Half', 4.49)">Add to Cart</button>
     </div>
@@ -169,6 +190,7 @@
     <div class="product" data-category="rice">
       <h3>Basmati Rice</h3>
       <p>Premium basmati rice</p>
+      <p class="status verified">✅ Halal Verified</p>
       <p class="price">$12.99</p>
       <button onclick="addToCart('Basmati Rice', 12.99)">Add to Cart</button>
     </div>
@@ -176,6 +198,7 @@
     <div class="product" data-category="rice">
       <h3>Brown Rice</h3>
       <p>Whole grain rice</p>
+      <p class="status verified">✅ Halal Verified</p>
       <p class="price">$6.99</p>
       <button onclick="addToCart('Brown Rice', 6.99)">Add to Cart</button>
     </div>
@@ -183,6 +206,7 @@
     <div class="product" data-category="pantry">
       <h3>Jam</h3>
       <p>Strawberry jam</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Jam', 4.49)">Add to Cart</button>
     </div>
@@ -190,6 +214,7 @@
     <div class="product" data-category="pantry">
       <h3>Tomato Sauce</h3>
       <p>Pantry staple</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$3.49</p>
       <button onclick="addToCart('Tomato Sauce', 3.49)">Add to Cart</button>
     </div>
@@ -197,6 +222,7 @@
     <div class="product" data-category="pantry">
       <h3>Cereal</h3>
       <p>Breakfast cereal</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$5.49</p>
       <button onclick="addToCart('Cereal', 5.49)">Add to Cart</button>
     </div>
@@ -204,6 +230,7 @@
     <div class="product" data-category="pantry">
       <h3>Ketchup</h3>
       <p>Tomato ketchup</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$3.99</p>
       <button onclick="addToCart('Ketchup', 3.99)">Add to Cart</button>
     </div>
@@ -211,6 +238,7 @@
     <div class="product" data-category="pantry">
       <h3>Mayonnaise</h3>
       <p>Creamy mayonnaise</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Mayonnaise', 4.49)">Add to Cart</button>
     </div>
@@ -218,6 +246,7 @@
     <div class="product" data-category="pantry">
       <h3>Pasta</h3>
       <p>Classic pasta</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$2.99</p>
       <button onclick="addToCart('Pasta', 2.99)">Add to Cart</button>
     </div>
@@ -225,6 +254,7 @@
     <div class="product" data-category="pantry">
       <h3>Pasta Items</h3>
       <p>Different pasta varieties</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.99</p>
       <button onclick="addToCart('Pasta Items', 4.99)">Add to Cart</button>
     </div>
@@ -232,6 +262,7 @@
     <div class="product" data-category="drinks">
       <h3>Apple Juice</h3>
       <p>Refreshing apple juice</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Apple Juice', 4.49)">Add to Cart</button>
     </div>
@@ -239,13 +270,15 @@
     <div class="product" data-category="drinks">
       <h3>Orange Juice</h3>
       <p>Fresh orange juice</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.99</p>
       <button onclick="addToCart('Orange Juice', 4.99)">Add to Cart</button>
     </div>
 
     <div class="product" data-category="snacks">
       <h3>Chips</h3>
-      <p>Crunchy potato chips</p>
+      <p>Potato chips</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$3.99</p>
       <button onclick="addToCart('Chips', 3.99)">Add to Cart</button>
     </div>
@@ -253,13 +286,23 @@
     <div class="product" data-category="snacks">
       <h3>Cookies</h3>
       <p>Chocolate chip cookies</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Cookies', 4.49)">Add to Cart</button>
+    </div>
+
+    <div class="product" data-category="snacks">
+      <h3>Whipped Cream</h3>
+      <p>Whipped cream topping</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
+      <p class="price">$4.99</p>
+      <button onclick="addToCart('Whipped Cream', 4.99)">Add to Cart</button>
     </div>
 
     <div class="product" data-category="spices">
       <h3>Salt</h3>
       <p>Fine table salt</p>
+      <p class="status verified">✅ Halal Verified</p>
       <p class="price">$1.99</p>
       <button onclick="addToCart('Salt', 1.99)">Add to Cart</button>
     </div>
@@ -267,6 +310,7 @@
     <div class="product" data-category="spices">
       <h3>Black Pepper</h3>
       <p>Ground black pepper</p>
+      <p class="status verified">✅ Halal Verified</p>
       <p class="price">$3.49</p>
       <button onclick="addToCart('Black Pepper', 3.49)">Add to Cart</button>
     </div>
@@ -274,6 +318,7 @@
     <div class="product" data-category="bakery">
       <h3>Bread</h3>
       <p>Fresh bread</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$3.99</p>
       <button onclick="addToCart('Bread', 3.99)">Add to Cart</button>
     </div>
@@ -281,20 +326,15 @@
     <div class="product" data-category="bakery">
       <h3>Bagels</h3>
       <p>Fresh bagels</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Bagels', 4.49)">Add to Cart</button>
-    </div>
-
-    <div class="product" data-category="snacks">
-      <h3>Whipped Cream</h3>
-      <p>Whipped cream topping</p>
-      <p class="price">$4.99</p>
-      <button onclick="addToCart('Whipped Cream', 4.99)">Add to Cart</button>
     </div>
 
     <div class="product" data-category="personal">
       <h3>Shampoo</h3>
       <p>Hair shampoo</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$6.99</p>
       <button onclick="addToCart('Shampoo', 6.99)">Add to Cart</button>
     </div>
@@ -302,6 +342,7 @@
     <div class="product" data-category="personal">
       <h3>Soap</h3>
       <p>Bath soap</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$3.49</p>
       <button onclick="addToCart('Soap', 3.49)">Add to Cart</button>
     </div>
@@ -309,6 +350,7 @@
     <div class="product" data-category="personal">
       <h3>Hand Wash</h3>
       <p>Liquid hand wash</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.99</p>
       <button onclick="addToCart('Hand Wash', 4.99)">Add to Cart</button>
     </div>
@@ -316,6 +358,7 @@
     <div class="product" data-category="personal">
       <h3>Toothpaste</h3>
       <p>Daily toothpaste</p>
+      <p class="status not-verified">⚠️ Not Verified</p>
       <p class="price">$4.49</p>
       <button onclick="addToCart('Toothpaste', 4.49)">Add to Cart</button>
     </div>
@@ -324,11 +367,7 @@
 
   <div class="cart">
     <h2>🛒 Cart</h2>
-
-    <div id="cartItems">
-      Cart is empty
-    </div>
-
+    <div id="cartItems">Cart is empty</div>
     <h3>Total: $<span id="cartTotal">0.00</span></h3>
   </div>
 
