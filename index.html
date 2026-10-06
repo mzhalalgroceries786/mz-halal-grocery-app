@@ -57,7 +57,7 @@ header {
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 
@@ -78,10 +78,6 @@ header {
   font-weight: bold;
 }
 
-.verified {
-  color: #198754;
-}
-
 .not-verified {
   color: #d68910;
 }
@@ -91,6 +87,11 @@ header {
   color: #555;
 }
 
+.product-info {
+  font-size: 13px;
+  color: #777;
+}
+
 button {
   background: #198754;
   color: white;
@@ -98,11 +99,6 @@ button {
   padding: 10px 15px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.quantity button {
-  padding: 5px 10px;
-  margin: 0 5px;
 }
 
 .cart {
@@ -124,7 +120,7 @@ button {
 
 <header>
 <h1>MZ Halal Grocery</h1>
-<p>Fresh & Halal Grocery</p>
+<p>Find Halal Grocery Products Easily</p>
 </header>
 
 <div class="container">
@@ -148,327 +144,426 @@ id="searchBox"
 <div class="category" onclick="filterProducts('snacks')">Snacks</div>
 <div class="category" onclick="filterProducts('spices')">Spices</div>
 <div class="category" onclick="filterProducts('bakery')">Bakery</div>
-<div class="category" onclick="filterProducts('personal')">Personal Care</div>
 </div>
 
 <h2>Products</h2>
 
 <div class="products">
 
+<!-- PRODUCT 1 -->
 <div class="product" data-category="dairy">
 <h3>Milk</h3>
 <p>Fresh milk</p>
-<p class="ingredients"><strong>Ingredients:</strong> Milk</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Walmart<br>
+<strong>Product ID:</strong> MILK001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$4.99</p>
-<button onclick="addToCart('Milk',4.99)">Add to Cart</button>
+
+<button onclick="addToCart('Milk',4.99)">
+Add to Cart
+</button>
 </div>
 
+
+<!-- PRODUCT 2 -->
 <div class="product" data-category="dairy">
 <h3>Cheese</h3>
 <p>Cheddar cheese</p>
-<p class="ingredients"><strong>Ingredients:</strong> Milk, salt, cultures, enzymes</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Target<br>
+<strong>Product ID:</strong> CHEESE001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$5.99</p>
-<button onclick="addToCart('Cheese',5.99)">Add to Cart</button>
+
+<button onclick="addToCart('Cheese',5.99)">
+Add to Cart
+</button>
 </div>
 
+
+<!-- PRODUCT 3 -->
 <div class="product" data-category="dairy">
 <h3>Yogurt</h3>
 <p>Plain yogurt</p>
-<p class="ingredients"><strong>Ingredients:</strong> Milk, live cultures</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Jewel-Osco<br>
+<strong>Product ID:</strong> YOGURT001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$3.99</p>
-<button onclick="addToCart('Yogurt',3.99)">Add to Cart</button>
+
+<button onclick="addToCart('Yogurt',3.99)">
+Add to Cart
+</button>
 </div>
 
-<div class="product" data-category="dairy">
-<h3>Half & Half</h3>
-<p>Creamy half & half</p>
-<p class="ingredients"><strong>Ingredients:</strong> Milk, cream</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$4.49</p>
-<button onclick="addToCart('Half & Half',4.49)">Add to Cart</button>
-</div>
 
+<!-- PRODUCT 4 -->
 <div class="product" data-category="rice">
 <h3>Basmati Rice</h3>
 <p>Premium basmati rice</p>
-<p class="ingredients"><strong>Ingredients:</strong> Basmati rice</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Walmart<br>
+<strong>Product ID:</strong> RICE001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$12.99</p>
-<button onclick="addToCart('Basmati Rice',12.99)">Add to Cart</button>
+
+<button onclick="addToCart('Basmati Rice',12.99)">
+Add to Cart
+</button>
 </div>
 
-<div class="product" data-category="rice">
-<h3>Brown Rice</h3>
-<p>Whole grain rice</p>
-<p class="ingredients"><strong>Ingredients:</strong> Brown rice</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$6.99</p>
-<button onclick="addToCart('Brown Rice',6.99)">Add to Cart</button>
-</div>
 
-<div class="product" data-category="pantry">
-<h3>Cereal</h3>
-<p>Breakfast cereal</p>
-<p class="ingredients"><strong>Ingredients:</strong> Grains, sugar, salt, vitamins</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$5.49</p>
-<button onclick="addToCart('Cereal',5.49)">Add to Cart</button>
-</div>
-
+<!-- PRODUCT 5 -->
 <div class="product" data-category="pantry">
 <h3>Ketchup</h3>
 <p>Tomato ketchup</p>
-<p class="ingredients"><strong>Ingredients:</strong> Tomatoes, vinegar, sugar, salt, spices</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Walmart<br>
+<strong>Product ID:</strong> KETCHUP001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$3.99</p>
-<button onclick="addToCart('Ketchup',3.99)">Add to Cart</button>
+
+<button onclick="addToCart('Ketchup',3.99)">
+Add to Cart
+</button>
 </div>
 
+
+<!-- PRODUCT 6 -->
 <div class="product" data-category="pantry">
 <h3>Mayonnaise</h3>
 <p>Creamy mayonnaise</p>
-<p class="ingredients"><strong>Ingredients:</strong> Oil, eggs, vinegar, salt</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Target<br>
+<strong>Product ID:</strong> MAYO001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$4.49</p>
-<button onclick="addToCart('Mayonnaise',4.49)">Add to Cart</button>
+
+<button onclick="addToCart('Mayonnaise',4.49)">
+Add to Cart
+</button>
 </div>
 
-<div class="product" data-category="pantry">
-<h3>Pasta</h3>
-<p>Classic pasta</p>
-<p class="ingredients"><strong>Ingredients:</strong> Durum wheat, water</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$2.99</p>
-<button onclick="addToCart('Pasta',2.99)">Add to Cart</button>
-</div>
 
-<div class="product" data-category="drinks">
-<h3>Apple Juice</h3>
-<p>Apple juice</p>
-<p class="ingredients"><strong>Ingredients:</strong> Apple juice</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$4.49</p>
-<button onclick="addToCart('Apple Juice',4.49)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="drinks">
-<h3>Orange Juice</h3>
-<p>Orange juice</p>
-<p class="ingredients"><strong>Ingredients:</strong> Orange juice</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$4.99</p>
-<button onclick="addToCart('Orange Juice',4.99)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="snacks">
-<h3>Chips</h3>
-<p>Potato chips</p>
-<p class="ingredients"><strong>Ingredients:</strong> Potatoes, oil, salt</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$3.99</p>
-<button onclick="addToCart('Chips',3.99)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="snacks">
-<h3>Cookies</h3>
-<p>Chocolate chip cookies</p>
-<p class="ingredients"><strong>Ingredients:</strong> Flour, sugar, oil, chocolate</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$4.49</p>
-<button onclick="addToCart('Cookies',4.49)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="spices">
-<h3>Salt</h3>
-<p>Table salt</p>
-<p class="ingredients"><strong>Ingredients:</strong> Salt</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$1.99</p>
-<button onclick="addToCart('Salt',1.99)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="spices">
-<h3>Black Pepper</h3>
-<p>Ground black pepper</p>
-<p class="ingredients"><strong>Ingredients:</strong> Black pepper</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$3.49</p>
-<button onclick="addToCart('Black Pepper',3.49)">Add to Cart</button>
-</div>
-
+<!-- PRODUCT 7 -->
 <div class="product" data-category="bakery">
 <h3>Bread</h3>
 <p>Fresh bread</p>
-<p class="ingredients"><strong>Ingredients:</strong> Wheat flour, water, yeast, salt</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Jewel-Osco<br>
+<strong>Product ID:</strong> BREAD001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$3.99</p>
-<button onclick="addToCart('Bread',3.99)">Add to Cart</button>
+
+<button onclick="addToCart('Bread',3.99)">
+Add to Cart
+</button>
 </div>
 
-<div class="product" data-category="bakery">
-<h3>Bagels</h3>
-<p>Fresh bagels</p>
-<p class="ingredients"><strong>Ingredients:</strong> Wheat flour, water, yeast, salt</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+
+<!-- PRODUCT 8 -->
+<div class="product" data-category="snacks">
+<h3>Chips</h3>
+<p>Potato chips</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Walmart<br>
+<strong>Product ID:</strong> CHIPS001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
+<p class="price">$3.99</p>
+
+<button onclick="addToCart('Chips',3.99)">
+Add to Cart
+</button>
+</div>
+
+
+<!-- PRODUCT 9 -->
+<div class="product" data-category="drinks">
+<h3>Apple Juice</h3>
+<p>Apple juice</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Target<br>
+<strong>Product ID:</strong> JUICE001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$4.49</p>
-<button onclick="addToCart('Bagels',4.49)">Add to Cart</button>
+
+<button onclick="addToCart('Apple Juice',4.49)">
+Add to Cart
+</button>
 </div>
 
-<div class="product" data-category="personal">
-<h3>Shampoo</h3>
-<p>Hair shampoo</p>
-<p class="ingredients"><strong>Ingredients:</strong> Product-specific ingredients</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$6.99</p>
-<button onclick="addToCart('Shampoo',6.99)">Add to Cart</button>
-</div>
 
-<div class="product" data-category="personal">
-<h3>Soap</h3>
-<p>Bath soap</p>
-<p class="ingredients"><strong>Ingredients:</strong> Product-specific ingredients</p>
-<p class="status not-verified">⚠️ Not Verified</p>
+<!-- PRODUCT 10 -->
+<div class="product" data-category="spices">
+<h3>Black Pepper</h3>
+<p>Ground black pepper</p>
+
+<p class="product-info">
+<strong>Brand:</strong> Sample Brand<br>
+<strong>Store:</strong> Walmart<br>
+<strong>Product ID:</strong> PEPPER001
+</p>
+
+<p class="ingredients">
+<strong>Ingredients:</strong> Product-specific ingredients
+</p>
+
+<p class="status not-verified">
+⚠️ Not Verified
+</p>
+
 <p class="price">$3.49</p>
-<button onclick="addToCart('Soap',3.49)">Add to Cart</button>
-</div>
 
-<div class="product" data-category="personal">
-<h3>Hand Wash</h3>
-<p>Liquid hand wash</p>
-<p class="ingredients"><strong>Ingredients:</strong> Product-specific ingredients</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$4.99</p>
-<button onclick="addToCart('Hand Wash',4.99)">Add to Cart</button>
-</div>
-
-<div class="product" data-category="personal">
-<h3>Toothpaste</h3>
-<p>Daily toothpaste</p>
-<p class="ingredients"><strong>Ingredients:</strong> Product-specific ingredients</p>
-<p class="status not-verified">⚠️ Not Verified</p>
-<p class="price">$4.49</p>
-<button onclick="addToCart('Toothpaste',4.49)">Add to Cart</button>
+<button onclick="addToCart('Black Pepper',3.49)">
+Add to Cart
+</button>
 </div>
 
 </div>
+
 
 <div class="cart">
+
 <h2>🛒 Cart</h2>
-<div id="cartItems">Cart is empty</div>
-<h3>Total: $<span id="cartTotal">0.00</span></h3>
+
+<div id="cartItems">
+Cart is empty
+</div>
+
+<h3>
+Total: $<span id="cartTotal">0.00</span>
+</h3>
+
 </div>
 
 </div>
+
 
 <script>
+
 let cart = [];
 
 function addToCart(name, price) {
-  let existingItem = cart.find(item => item.name === name);
 
-  if (existingItem) {
-    existingItem.quantity++;
-  } else {
-    cart.push({
-      name: name,
-      price: price,
-      quantity: 1
-    });
-  }
+let existingItem = cart.find(
+item => item.name === name
+);
 
-  updateCart();
+if (existingItem) {
+
+existingItem.quantity++;
+
+} else {
+
+cart.push({
+name: name,
+price: price,
+quantity: 1
+});
+
 }
 
-function increaseQuantity(index) {
-  cart[index].quantity++;
-  updateCart();
+updateCart();
+
 }
 
-function decreaseQuantity(index) {
-  cart[index].quantity--;
-
-  if (cart[index].quantity <= 0) {
-    cart.splice(index, 1);
-  }
-
-  updateCart();
-}
-
-function removeItem(index) {
-  cart.splice(index, 1);
-  updateCart();
-}
 
 function updateCart() {
-  let cartItems = document.getElementById("cartItems");
-  let total = 0;
 
-  if (cart.length === 0) {
-    cartItems.innerHTML = "Cart is empty";
-  } else {
-    cartItems.innerHTML = "";
+let cartItems =
+document.getElementById("cartItems");
 
-    cart.forEach(function(item, index) {
-      let itemTotal = item.price * item.quantity;
-      total += itemTotal;
+let total = 0;
 
-      cartItems.innerHTML += `
-        <div class="cart-item">
-          <strong>${item.name}</strong><br>
-          $${item.price.toFixed(2)} × ${item.quantity}
-          = $${itemTotal.toFixed(2)}
+if (cart.length === 0) {
 
-          <div class="quantity">
-            <button onclick="decreaseQuantity(${index})">−</button>
-            ${item.quantity}
-            <button onclick="increaseQuantity(${index})">+</button>
-            <button onclick="removeItem(${index})">Remove</button>
-          </div>
-        </div>
-      `;
-    });
-  }
+cartItems.innerHTML =
+"Cart is empty";
 
-  document.getElementById("cartTotal").textContent =
-    total.toFixed(2);
+} else {
+
+cartItems.innerHTML = "";
+
+cart.forEach(function(item) {
+
+let itemTotal =
+item.price * item.quantity;
+
+total += itemTotal;
+
+cartItems.innerHTML += `
+<div class="cart-item">
+<strong>${item.name}</strong><br>
+$${item.price.toFixed(2)}
+× ${item.quantity}
+= $${itemTotal.toFixed(2)}
+</div>
+`;
+
+});
+
 }
+
+document.getElementById("cartTotal")
+.textContent = total.toFixed(2);
+
+}
+
 
 function filterProducts(category) {
-  let products = document.querySelectorAll(".product");
 
-  products.forEach(function(product) {
-    if (
-      category === "all" ||
-      product.dataset.category === category
-    ) {
-      product.style.display = "block";
-    } else {
-      product.style.display = "none";
-    }
-  });
+let products =
+document.querySelectorAll(".product");
+
+products.forEach(function(product) {
+
+if (
+category === "all" ||
+product.dataset.category === category
+) {
+
+product.style.display = "block";
+
+} else {
+
+product.style.display = "none";
+
 }
+
+});
+
+}
+
 
 function searchProducts() {
-  let search = document
-    .getElementById("searchBox")
-    .value
-    .toLowerCase();
 
-  let products = document.querySelectorAll(".product");
+let search =
+document.getElementById("searchBox")
+.value
+.toLowerCase();
 
-  products.forEach(function(product) {
-    let text = product.textContent.toLowerCase();
+let products =
+document.querySelectorAll(".product");
 
-    if (text.includes(search)) {
-      product.style.display = "block";
-    } else {
-      product.style.display = "none";
-    }
-  });
+products.forEach(function(product) {
+
+let text =
+product.textContent.toLowerCase();
+
+if (text.includes(search)) {
+
+product.style.display = "block";
+
+} else {
+
+product.style.display = "none";
+
 }
+
+});
+
+}
+
 </script>
 
 </body>
