@@ -1,999 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MZ Halal Grocery</title>
 
-<title>MZ Halal Grocery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7f6;
+      color: #222;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-}
+    header {
+      background: #198754;
+      color: white;
+      text-align: center;
+      padding: 22px 15px;
+    }
 
-header {
-  background: #198754;
-  color: white;
-  padding: 25px 20px;
-  text-align: center;
-}
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
 
-header h1 {
-  margin: 0 0 8px 0;
-}
+    header p {
+      margin: 8px 0 0;
+      font-size: 15px;
+    }
 
-header p {
-  margin: 0;
-}
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
+    .search-box {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
 
-.search {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
+    .categories {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
 
-.categories {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
-}
+    .category {
+      border: none;
+      background: white;
+      padding: 9px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+    }
 
-.category {
-  background: white;
-  border: 1px solid #ddd;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
+    .category.active {
+      background: #198754;
+      color: white;
+      border-color: #198754;
+    }
 
-.category:hover {
-  background: #198754;
-  color: white;
-}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-}
+    .product {
+      background: white;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
 
-.product {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+    .product h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
 
-.product h3 {
-  margin-top: 0;
-}
+    .brand {
+      color: #666;
+      margin-bottom: 10px;
+    }
 
-.price {
-  color: #198754;
-  font-size: 20px;
-  font-weight: bold;
-}
+    .price {
+      font-size: 21px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
 
-.status {
-  font-weight: bold;
-  color: #198754;
-}
+    .status {
+      color: #198754;
+      font-weight: bold;
+      margin: 8px 0;
+    }
 
-.ingredients {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
-}
+    .store {
+      margin: 8px 0;
+    }
 
-.product-info {
-  font-size: 13px;
-  color: #777;
-  line-height: 1.6;
-}
+    .evidence {
+      font-size: 13px;
+      color: #555;
+      margin: 10px 0 15px;
+    }
 
-.store-link {
-  display: inline-block;
-  margin-top: 10px;
-  background: #198754;
-  color: white;
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 6px;
-}
+    .view-button {
+      display: inline-block;
+      background: #198754;
+      color: white;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 7px;
+    }
 
-.store-link:hover {
-  opacity: 0.9;
-}
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      color: #666;
+    }
 
-.no-results {
-  display: none;
-  background: white;
-  padding: 25px;
-  border-radius: 10px;
-  text-align: center;
-  color: #777;
-}
-
-.info-box {
-  background: #e9f7ef;
-  border-left: 5px solid #198754;
-  padding: 15px;
-  margin-bottom: 25px;
-  border-radius: 6px;
-}
-
-</style>
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 13px;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-
-<h1>MZ Halal Grocery</h1>
-
-<p>Find Halal Grocery Products Easily</p>
-
+  <h1>MZ Halal Grocery</h1>
+  <p>🟢 Halal Products Only</p>
 </header>
-
 
 <div class="container">
 
+  <input
+    type="text"
+    id="search"
+    class="search-box"
+    placeholder="Search halal products..."
+  >
 
-<div class="info-box">
+  <div class="categories">
+    <button class="category active" onclick="filterCategory('All', this)">All</button>
+    <button class="category" onclick="filterCategory('Dairy', this)">Dairy</button>
+    <button class="category" onclick="filterCategory('Bakery', this)">Bakery</button>
+    <button class="category" onclick="filterCategory('Snacks', this)">Snacks</button>
+  </div>
 
-<strong>🟢 Halal Products Only</strong>
+  <div class="products" id="products">
 
-<br>
+    <!-- Product 1 -->
+    <div class="product" data-category="Dairy" data-search="arz cream on top yogurt yogurt dairy walmart">
+      <h3>ARZ Cream On Top Yogurt</h3>
+      <div class="brand">ARZ</div>
+      <div class="price">$3.92</div>
+      <div class="status">🟢 Halal Certified</div>
+      <div class="store">Store: Walmart</div>
+      <div class="evidence">
+        Walmart listing states that this product is Halal Certified.
+      </div>
+      <a
+        class="view-button"
+        href="https://www.walmart.com/ip/ARZ-CREAM-ON-TOP-YOGURT-2LB/1150588737"
+        target="_blank"
+        rel="noopener noreferrer">
+        View at Walmart
+      </a>
+    </div>
 
-Products shown here are currently marked as
-<strong>Halal Verified</strong>.
+    <!-- Product 2 -->
+    <div class="product" data-category="Bakery" data-search="libanais classic white pita bread bread bakery walmart">
+      <h3>Libanais Classic White Pita Bread</h3>
+      <div class="brand">Libanais</div>
+      <div class="price">$4.97</div>
+      <div class="status">🟢 Halal Listed</div>
+      <div class="store">Store: Walmart</div>
+      <div class="evidence">
+        Walmart listing states: Kosher, Halal, Vegan.
+      </div>
+      <a
+        class="view-button"
+        href="https://www.walmart.com/ip/Classic-White-Pita-Bread-10-6-Loaves/14233074919"
+        target="_blank"
+        rel="noopener noreferrer">
+        View at Walmart
+      </a>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product" data-category="Bakery" data-search="libanais classic white pita pocket bread bakery walmart">
+      <h3>Libanais Classic White Pita Pocket</h3>
+      <div class="brand">Libanais</div>
+      <div class="price">$4.97</div>
+      <div class="status">🟢 Halal Listed</div>
+      <div class="store">Store: Walmart</div>
+      <div class="evidence">
+        Walmart listing states: Kosher, Halal, Vegan.
+      </div>
+      <a
+        class="view-button"
+        href="https://www.walmart.com/ip/Classic-White-Pita-Pocket-6-10-Loaves/14254420174"
+        target="_blank"
+        rel="noopener noreferrer">
+        View at Walmart
+      </a>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product" data-category="Bakery" data-search="libanais whole wheat bread bakery walmart">
+      <h3>Libanais Classic Lebanese Whole Wheat Bread</h3>
+      <div class="brand">Libanais</div>
+      <div class="price">$2.44</div>
+      <div class="status">🟢 Halal Listed</div>
+      <div class="store">Store: Walmart</div>
+      <div class="evidence">
+        Walmart listing states: Kosher, Halal, Vegan.
+      </div>
+      <a
+        class="view-button"
+        href="https://www.walmart.com/ip/LIBANAIS-CLASSIC-LEBANESE-WHOLE-WHEAT-BREAD-10-6-LOAVES/17500055794"
+        target="_blank"
+        rel="noopener noreferrer">
+        View at Walmart
+      </a>
+    </div>
+
+    <!-- Product 5 -->
+    <div class="product" data-category="Snacks" data-search="libanais garlic pita chips chips snacks walmart">
+      <h3>Libanais Garlic Pita Chips</h3>
+      <div class="brand">Libanais</div>
+      <div class="price">$5.97</div>
+      <div class="status">🟢 Halal Listed</div>
+      <div class="store">Store: Walmart</div>
+      <div class="evidence">
+        Walmart listing states: Halal, Vegan.
+      </div>
+      <a
+        class="view-button"
+        href="https://www.walmart.com/ip/Garlic-Pita-Chips/5503397916"
+        target="_blank"
+        rel="noopener noreferrer">
+        View at Walmart
+      </a>
+    </div>
+
+    <!-- Product 6 -->
+    <div class="product" data-category="Snacks" data-search="libanais zaatar pita chips chips snacks walmart">
+      <h3>Libanais Zaatar Pita Chips</h3>
+      <div class="brand">Libanais</div>
+      <div class="price">$5.97</div>
+      <div class="status">🟢 Halal Listed</div>
+      <div class="store">Store: Walmart</div>
+      <div class="evidence">
+        Walmart listing states: Halal, Vegan.
+      </div>
+      <a
+        class="view-button"
+        href="https://www.walmart.com/ip/Zaatar-Pita-Chips/5649003239"
+        target="_blank"
+        rel="noopener noreferrer">
+        View at Walmart
+      </a>
+    </div>
+
+  </div>
+
+  <div id="noResults" class="no-results">
+    No halal products found.
+  </div>
 
 </div>
 
-
-<input
-class="search"
-type="text"
-placeholder="Search halal groceries..."
-onkeyup="searchProducts()"
-id="searchBox"
->
-
-
-<h2>Categories</h2>
-
-
-<div class="categories">
-
-<div class="category" onclick="filterProducts('all')">
-All
-</div>
-
-<div class="category" onclick="filterProducts('dairy')">
-Dairy
-</div>
-
-<div class="category" onclick="filterProducts('rice')">
-Rice & Grains
-</div>
-
-<div class="category" onclick="filterProducts('pantry')">
-Pantry
-</div>
-
-<div class="category" onclick="filterProducts('drinks')">
-Drinks
-</div>
-
-<div class="category" onclick="filterProducts('snacks')">
-Snacks
-</div>
-
-<div class="category" onclick="filterProducts('spices')">
-Spices
-</div>
-
-<div class="category" onclick="filterProducts('bakery')">
-Bakery
-</div>
-
-</div>
-
-
-<h2>Halal Products</h2>
-
-
-<div class="products" id="productList">
-
-
-<!-- PRODUCT 1 -->
-
-<div
-class="product"
-data-category="dairy"
-data-status="halal"
->
-
-<h3>Milk</h3>
-
-<p>Fresh whole milk</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Walmart
-
-<br>
-
-<strong>Product ID:</strong>
-MILK001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Milk, Vitamin D3
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$4.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Walmart
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 2 -->
-
-<div
-class="product"
-data-category="dairy"
-data-status="halal"
->
-
-<h3>Cheese</h3>
-
-<p>Cheddar cheese</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Target
-
-<br>
-
-<strong>Product ID:</strong>
-CHEESE001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Milk, Salt, Cheese Culture
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$5.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Target
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 3 -->
-
-<div
-class="product"
-data-category="dairy"
-data-status="halal"
->
-
-<h3>Yogurt</h3>
-
-<p>Plain yogurt</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Jewel-Osco
-
-<br>
-
-<strong>Product ID:</strong>
-YOGURT001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Milk, Live Cultures
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$3.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Jewel-Osco
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 4 -->
-
-<div
-class="product"
-data-category="rice"
-data-status="halal"
->
-
-<h3>Basmati Rice</h3>
-
-<p>Premium basmati rice</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Walmart
-
-<br>
-
-<strong>Product ID:</strong>
-RICE001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-100% Basmati Rice
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$12.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Walmart
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 5 -->
-
-<div
-class="product"
-data-category="pantry"
-data-status="halal"
->
-
-<h3>Ketchup</h3>
-
-<p>Tomato ketchup</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Walmart
-
-<br>
-
-<strong>Product ID:</strong>
-KETCHUP001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Tomatoes, Vinegar, Sugar, Salt, Spices
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$3.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Walmart
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 6 -->
-
-<div
-class="product"
-data-category="pantry"
-data-status="halal"
->
-
-<h3>Mayonnaise</h3>
-
-<p>Creamy mayonnaise</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Target
-
-<br>
-
-<strong>Product ID:</strong>
-MAYO001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Eggs, Oil, Vinegar, Salt
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$4.49
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Target
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 7 -->
-
-<div
-class="product"
-data-category="bakery"
-data-status="halal"
->
-
-<h3>Bread</h3>
-
-<p>Fresh bread</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Jewel-Osco
-
-<br>
-
-<strong>Product ID:</strong>
-BREAD001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Wheat Flour, Water, Yeast, Salt
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$3.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Jewel-Osco
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 8 -->
-
-<div
-class="product"
-data-category="snacks"
-data-status="halal"
->
-
-<h3>Chips</h3>
-
-<p>Potato chips</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Walmart
-
-<br>
-
-<strong>Product ID:</strong>
-CHIPS001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Potatoes, Vegetable Oil, Salt
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$3.99
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Walmart
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 9 -->
-
-<div
-class="product"
-data-category="drinks"
-data-status="halal"
->
-
-<h3>Apple Juice</h3>
-
-<p>Apple juice</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Target
-
-<br>
-
-<strong>Product ID:</strong>
-JUICE001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-Apple Juice, Water, Vitamin C
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$4.49
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Target
-
-</a>
-
-</div>
-
-
-
-<!-- PRODUCT 10 -->
-
-<div
-class="product"
-data-category="spices"
-data-status="halal"
->
-
-<h3>Black Pepper</h3>
-
-<p>Ground black pepper</p>
-
-<p class="product-info">
-
-<strong>Brand:</strong>
-Sample Brand
-
-<br>
-
-<strong>Store:</strong>
-Walmart
-
-<br>
-
-<strong>Product ID:</strong>
-PEPPER001
-
-</p>
-
-
-<p class="ingredients">
-
-<strong>Ingredients:</strong>
-
-100% Black Pepper
-
-</p>
-
-
-<p class="status">
-
-🟢 Halal Verified
-
-</p>
-
-
-<p class="price">
-
-$3.49
-
-</p>
-
-
-<a
-class="store-link"
-href="#"
-onclick="return false;"
->
-
-View at Walmart
-
-</a>
-
-</div>
-
-
-</div>
-
-
-<div
-class="no-results"
-id="noResults"
->
-
-No halal products found.
-
-</div>
-
-
-</div>
-
+<footer>
+  MZ Halal Grocery — Helping you find halal grocery products.
+</footer>
 
 <script>
 
+  let currentCategory = "All";
 
-function filterProducts(category) {
+  const searchInput = document.getElementById("search");
+  const products = document.querySelectorAll(".product");
+  const noResults = document.getElementById("noResults");
 
-let products =
-document.querySelectorAll(".product");
+  function filterProducts() {
 
-let visibleCount = 0;
+    const searchText = searchInput.value.toLowerCase();
+    let visibleCount = 0;
 
-products.forEach(function(product) {
+    products.forEach(product => {
 
-let status =
-product.dataset.status;
+      const category = product.dataset.category;
+      const searchableText = product.dataset.search.toLowerCase();
 
-let productCategory =
-product.dataset.category;
+      const categoryMatch =
+        currentCategory === "All" ||
+        category === currentCategory;
 
-if (
-status === "halal" &&
-(
-category === "all" ||
-productCategory === category
-)
-) {
+      const searchMatch =
+        searchableText.includes(searchText);
 
-product.style.display = "block";
+      if (categoryMatch && searchMatch) {
+        product.style.display = "block";
+        visibleCount++;
+      } else {
+        product.style.display = "none";
+      }
 
-visibleCount++;
+    });
 
-} else {
+    noResults.style.display =
+      visibleCount === 0 ? "block" : "none";
+  }
 
-product.style.display = "none";
+  function filterCategory(category, button) {
 
-}
+    currentCategory = category;
 
-});
+    document.querySelectorAll(".category").forEach(btn => {
+      btn.classList.remove("active");
+    });
 
+    button.classList.add("active");
 
-document.getElementById("noResults").style.display =
-visibleCount === 0 ? "block" : "none";
+    filterProducts();
+  }
 
-}
-
-
-function searchProducts() {
-
-let search =
-document.getElementById("searchBox")
-.value
-.toLowerCase()
-.trim();
-
-let products =
-document.querySelectorAll(".product");
-
-let visibleCount = 0;
-
-products.forEach(function(product) {
-
-let status =
-product.dataset.status;
-
-let text =
-product.textContent.toLowerCase();
-
-if (
-status === "halal" &&
-text.includes(search)
-) {
-
-product.style.display = "block";
-
-visibleCount++;
-
-} else {
-
-product.style.display = "none";
-
-}
-
-});
-
-
-document.getElementById("noResults").style.display =
-visibleCount === 0 ? "block" : "none";
-
-}
-
+  searchInput.addEventListener("input", filterProducts);
 
 </script>
 
