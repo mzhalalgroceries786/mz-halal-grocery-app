@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MZ Halal Grocery</title>
 
 <style>
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -15,8 +17,16 @@ body {
 header {
   background: #198754;
   color: white;
-  padding: 20px;
+  padding: 25px 20px;
   text-align: center;
+}
+
+header h1 {
+  margin: 0 0 8px 0;
+}
+
+header p {
+  margin: 0;
 }
 
 .container {
@@ -27,7 +37,7 @@ header {
 
 .search {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid #ccc;
@@ -57,7 +67,7 @@ header {
 
 .products {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
 }
 
@@ -68,6 +78,10 @@ header {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+.product h3 {
+  margin-top: 0;
+}
+
 .price {
   color: #198754;
   font-size: 20px;
@@ -76,438 +90,822 @@ header {
 
 .status {
   font-weight: bold;
-}
-
-.not-verified {
-  color: #d68910;
+  color: #198754;
 }
 
 .ingredients {
   font-size: 14px;
   color: #555;
+  line-height: 1.5;
 }
 
 .product-info {
   font-size: 13px;
   color: #777;
+  line-height: 1.6;
 }
 
-button {
+.store-link {
+  display: inline-block;
+  margin-top: 10px;
   background: #198754;
   color: white;
-  border: none;
-  padding: 10px 15px;
+  text-decoration: none;
+  padding: 10px 14px;
   border-radius: 6px;
-  cursor: pointer;
 }
 
-.cart {
+.store-link:hover {
+  opacity: 0.9;
+}
+
+.no-results {
+  display: none;
   background: white;
-  padding: 15px;
-  margin-top: 25px;
+  padding: 25px;
   border-radius: 10px;
-  font-size: 18px;
+  text-align: center;
+  color: #777;
 }
 
-.cart-item {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+.info-box {
+  background: #e9f7ef;
+  border-left: 5px solid #198754;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 6px;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
+
 <h1>MZ Halal Grocery</h1>
+
 <p>Find Halal Grocery Products Easily</p>
+
 </header>
 
+
 <div class="container">
+
+
+<div class="info-box">
+
+<strong>🟢 Halal Products Only</strong>
+
+<br>
+
+Products shown here are currently marked as
+<strong>Halal Verified</strong>.
+
+</div>
+
 
 <input
 class="search"
 type="text"
-placeholder="Search groceries..."
+placeholder="Search halal groceries..."
 onkeyup="searchProducts()"
 id="searchBox"
 >
 
+
 <h2>Categories</h2>
 
+
 <div class="categories">
-<div class="category" onclick="filterProducts('all')">All</div>
-<div class="category" onclick="filterProducts('dairy')">Dairy</div>
-<div class="category" onclick="filterProducts('rice')">Rice & Grains</div>
-<div class="category" onclick="filterProducts('pantry')">Pantry</div>
-<div class="category" onclick="filterProducts('drinks')">Drinks</div>
-<div class="category" onclick="filterProducts('snacks')">Snacks</div>
-<div class="category" onclick="filterProducts('spices')">Spices</div>
-<div class="category" onclick="filterProducts('bakery')">Bakery</div>
+
+<div class="category" onclick="filterProducts('all')">
+All
 </div>
 
-<h2>Products</h2>
+<div class="category" onclick="filterProducts('dairy')">
+Dairy
+</div>
 
-<div class="products">
+<div class="category" onclick="filterProducts('rice')">
+Rice & Grains
+</div>
+
+<div class="category" onclick="filterProducts('pantry')">
+Pantry
+</div>
+
+<div class="category" onclick="filterProducts('drinks')">
+Drinks
+</div>
+
+<div class="category" onclick="filterProducts('snacks')">
+Snacks
+</div>
+
+<div class="category" onclick="filterProducts('spices')">
+Spices
+</div>
+
+<div class="category" onclick="filterProducts('bakery')">
+Bakery
+</div>
+
+</div>
+
+
+<h2>Halal Products</h2>
+
+
+<div class="products" id="productList">
+
 
 <!-- PRODUCT 1 -->
-<div class="product" data-category="dairy">
+
+<div
+class="product"
+data-category="dairy"
+data-status="halal"
+>
+
 <h3>Milk</h3>
-<p>Fresh milk</p>
+
+<p>Fresh whole milk</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Walmart<br>
-<strong>Product ID:</strong> MILK001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Walmart
+
+<br>
+
+<strong>Product ID:</strong>
+MILK001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Milk, Vitamin D3
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$4.99</p>
 
-<button onclick="addToCart('Milk',4.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$4.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Walmart
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 2 -->
-<div class="product" data-category="dairy">
+
+<div
+class="product"
+data-category="dairy"
+data-status="halal"
+>
+
 <h3>Cheese</h3>
+
 <p>Cheddar cheese</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Target<br>
-<strong>Product ID:</strong> CHEESE001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Target
+
+<br>
+
+<strong>Product ID:</strong>
+CHEESE001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Milk, Salt, Cheese Culture
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$5.99</p>
 
-<button onclick="addToCart('Cheese',5.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$5.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Target
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 3 -->
-<div class="product" data-category="dairy">
+
+<div
+class="product"
+data-category="dairy"
+data-status="halal"
+>
+
 <h3>Yogurt</h3>
+
 <p>Plain yogurt</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Jewel-Osco<br>
-<strong>Product ID:</strong> YOGURT001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Jewel-Osco
+
+<br>
+
+<strong>Product ID:</strong>
+YOGURT001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Milk, Live Cultures
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$3.99</p>
 
-<button onclick="addToCart('Yogurt',3.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$3.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Jewel-Osco
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 4 -->
-<div class="product" data-category="rice">
+
+<div
+class="product"
+data-category="rice"
+data-status="halal"
+>
+
 <h3>Basmati Rice</h3>
+
 <p>Premium basmati rice</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Walmart<br>
-<strong>Product ID:</strong> RICE001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Walmart
+
+<br>
+
+<strong>Product ID:</strong>
+RICE001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+100% Basmati Rice
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$12.99</p>
 
-<button onclick="addToCart('Basmati Rice',12.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$12.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Walmart
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 5 -->
-<div class="product" data-category="pantry">
+
+<div
+class="product"
+data-category="pantry"
+data-status="halal"
+>
+
 <h3>Ketchup</h3>
+
 <p>Tomato ketchup</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Walmart<br>
-<strong>Product ID:</strong> KETCHUP001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Walmart
+
+<br>
+
+<strong>Product ID:</strong>
+KETCHUP001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Tomatoes, Vinegar, Sugar, Salt, Spices
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$3.99</p>
 
-<button onclick="addToCart('Ketchup',3.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$3.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Walmart
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 6 -->
-<div class="product" data-category="pantry">
+
+<div
+class="product"
+data-category="pantry"
+data-status="halal"
+>
+
 <h3>Mayonnaise</h3>
+
 <p>Creamy mayonnaise</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Target<br>
-<strong>Product ID:</strong> MAYO001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Target
+
+<br>
+
+<strong>Product ID:</strong>
+MAYO001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Eggs, Oil, Vinegar, Salt
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$4.49</p>
 
-<button onclick="addToCart('Mayonnaise',4.49)">
-Add to Cart
-</button>
+<p class="price">
+
+$4.49
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Target
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 7 -->
-<div class="product" data-category="bakery">
+
+<div
+class="product"
+data-category="bakery"
+data-status="halal"
+>
+
 <h3>Bread</h3>
+
 <p>Fresh bread</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Jewel-Osco<br>
-<strong>Product ID:</strong> BREAD001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Jewel-Osco
+
+<br>
+
+<strong>Product ID:</strong>
+BREAD001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Wheat Flour, Water, Yeast, Salt
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$3.99</p>
 
-<button onclick="addToCart('Bread',3.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$3.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Jewel-Osco
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 8 -->
-<div class="product" data-category="snacks">
+
+<div
+class="product"
+data-category="snacks"
+data-status="halal"
+>
+
 <h3>Chips</h3>
+
 <p>Potato chips</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Walmart<br>
-<strong>Product ID:</strong> CHIPS001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Walmart
+
+<br>
+
+<strong>Product ID:</strong>
+CHIPS001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Potatoes, Vegetable Oil, Salt
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$3.99</p>
 
-<button onclick="addToCart('Chips',3.99)">
-Add to Cart
-</button>
+<p class="price">
+
+$3.99
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Walmart
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 9 -->
-<div class="product" data-category="drinks">
+
+<div
+class="product"
+data-category="drinks"
+data-status="halal"
+>
+
 <h3>Apple Juice</h3>
+
 <p>Apple juice</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Target<br>
-<strong>Product ID:</strong> JUICE001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Target
+
+<br>
+
+<strong>Product ID:</strong>
+JUICE001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+Apple Juice, Water, Vitamin C
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$4.49</p>
 
-<button onclick="addToCart('Apple Juice',4.49)">
-Add to Cart
-</button>
+<p class="price">
+
+$4.49
+
+</p>
+
+
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
+
+View at Target
+
+</a>
+
 </div>
+
 
 
 <!-- PRODUCT 10 -->
-<div class="product" data-category="spices">
+
+<div
+class="product"
+data-category="spices"
+data-status="halal"
+>
+
 <h3>Black Pepper</h3>
+
 <p>Ground black pepper</p>
 
 <p class="product-info">
-<strong>Brand:</strong> Sample Brand<br>
-<strong>Store:</strong> Walmart<br>
-<strong>Product ID:</strong> PEPPER001
+
+<strong>Brand:</strong>
+Sample Brand
+
+<br>
+
+<strong>Store:</strong>
+Walmart
+
+<br>
+
+<strong>Product ID:</strong>
+PEPPER001
+
 </p>
+
 
 <p class="ingredients">
-<strong>Ingredients:</strong> Product-specific ingredients
+
+<strong>Ingredients:</strong>
+
+100% Black Pepper
+
 </p>
 
-<p class="status not-verified">
-⚠️ Not Verified
+
+<p class="status">
+
+🟢 Halal Verified
+
 </p>
 
-<p class="price">$3.49</p>
 
-<button onclick="addToCart('Black Pepper',3.49)">
-Add to Cart
-</button>
-</div>
+<p class="price">
 
-</div>
+$3.49
+
+</p>
 
 
-<div class="cart">
+<a
+class="store-link"
+href="#"
+onclick="return false;"
+>
 
-<h2>🛒 Cart</h2>
+View at Walmart
 
-<div id="cartItems">
-Cart is empty
-</div>
-
-<h3>
-Total: $<span id="cartTotal">0.00</span>
-</h3>
+</a>
 
 </div>
+
+
+</div>
+
+
+<div
+class="no-results"
+id="noResults"
+>
+
+No halal products found.
+
+</div>
+
 
 </div>
 
 
 <script>
-
-let cart = [];
-
-function addToCart(name, price) {
-
-let existingItem = cart.find(
-item => item.name === name
-);
-
-if (existingItem) {
-
-existingItem.quantity++;
-
-} else {
-
-cart.push({
-name: name,
-price: price,
-quantity: 1
-});
-
-}
-
-updateCart();
-
-}
-
-
-function updateCart() {
-
-let cartItems =
-document.getElementById("cartItems");
-
-let total = 0;
-
-if (cart.length === 0) {
-
-cartItems.innerHTML =
-"Cart is empty";
-
-} else {
-
-cartItems.innerHTML = "";
-
-cart.forEach(function(item) {
-
-let itemTotal =
-item.price * item.quantity;
-
-total += itemTotal;
-
-cartItems.innerHTML += `
-<div class="cart-item">
-<strong>${item.name}</strong><br>
-$${item.price.toFixed(2)}
-× ${item.quantity}
-= $${itemTotal.toFixed(2)}
-</div>
-`;
-
-});
-
-}
-
-document.getElementById("cartTotal")
-.textContent = total.toFixed(2);
-
-}
 
 
 function filterProducts(category) {
@@ -515,14 +913,27 @@ function filterProducts(category) {
 let products =
 document.querySelectorAll(".product");
 
+let visibleCount = 0;
+
 products.forEach(function(product) {
 
+let status =
+product.dataset.status;
+
+let productCategory =
+product.dataset.category;
+
 if (
+status === "halal" &&
+(
 category === "all" ||
-product.dataset.category === category
+productCategory === category
+)
 ) {
 
 product.style.display = "block";
+
+visibleCount++;
 
 } else {
 
@@ -531,6 +942,10 @@ product.style.display = "none";
 }
 
 });
+
+
+document.getElementById("noResults").style.display =
+visibleCount === 0 ? "block" : "none";
 
 }
 
@@ -540,19 +955,30 @@ function searchProducts() {
 let search =
 document.getElementById("searchBox")
 .value
-.toLowerCase();
+.toLowerCase()
+.trim();
 
 let products =
 document.querySelectorAll(".product");
 
+let visibleCount = 0;
+
 products.forEach(function(product) {
+
+let status =
+product.dataset.status;
 
 let text =
 product.textContent.toLowerCase();
 
-if (text.includes(search)) {
+if (
+status === "halal" &&
+text.includes(search)
+) {
 
 product.style.display = "block";
+
+visibleCount++;
 
 } else {
 
@@ -562,7 +988,12 @@ product.style.display = "none";
 
 });
 
+
+document.getElementById("noResults").style.display =
+visibleCount === 0 ? "block" : "none";
+
 }
+
 
 </script>
 
