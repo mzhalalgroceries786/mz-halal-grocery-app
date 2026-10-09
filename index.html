@@ -1,351 +1,184 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MZ Halal Grocery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MZ Halal Grocery</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7f6;
-      color: #222;
-    }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7f6;
+  color: #222;
+}
 
-    header {
-      background: #198754;
-      color: white;
-      text-align: center;
-      padding: 22px 15px;
-    }
+header {
+  background: #198754;
+  color: white;
+  text-align: center;
+  padding: 22px 15px;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+header h1 { margin: 0; }
 
-    header p {
-      margin: 8px 0 0;
-      font-size: 15px;
-    }
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+.search-box {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
 
-    .search-box {
-      width: 100%;
-      padding: 14px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
 
-    .categories {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
+.product {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 2px 8px #00000012;
+}
 
-    .category {
-      border: none;
-      background: white;
-      padding: 9px 14px;
-      border-radius: 20px;
-      cursor: pointer;
-      border: 1px solid #ddd;
-    }
+.product h3 { margin-top: 0; }
 
-    .category.active {
-      background: #198754;
-      color: white;
-      border-color: #198754;
-    }
+.status {
+  color: #198754;
+  font-weight: bold;
+}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
+.evidence {
+  font-size: 13px;
+  color: #555;
+  margin: 12px 0;
+}
 
-    .product {
-      background: white;
-      border-radius: 12px;
-      padding: 18px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+.view-button {
+  display: inline-block;
+  background: #198754;
+  color: white;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 7px;
+}
 
-    .product h3 {
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
+.no-results {
+  display: none;
+  text-align: center;
+  padding: 25px;
+}
 
-    .brand {
-      color: #666;
-      margin-bottom: 10px;
-    }
-
-    .price {
-      font-size: 21px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .status {
-      color: #198754;
-      font-weight: bold;
-      margin: 8px 0;
-    }
-
-    .store {
-      margin: 8px 0;
-    }
-
-    .evidence {
-      font-size: 13px;
-      color: #555;
-      margin: 10px 0 15px;
-    }
-
-    .view-button {
-      display: inline-block;
-      background: #198754;
-      color: white;
-      text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 7px;
-    }
-
-    .no-results {
-      display: none;
-      text-align: center;
-      padding: 30px;
-      color: #666;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #666;
-      font-size: 13px;
-    }
-  </style>
+footer {
+  text-align: center;
+  padding: 25px;
+  color: #666;
+  font-size: 13px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
   <h1>MZ Halal Grocery</h1>
-  <p>🟢 Halal Products Only</p>
+  <p>Halal Product Information</p>
 </header>
 
 <div class="container">
 
-  <input
-    type="text"
-    id="search"
-    class="search-box"
-    placeholder="Search halal products..."
-  >
+<input
+  type="text"
+  id="search"
+  class="search-box"
+  placeholder="Search products..."
+>
 
-  <div class="categories">
-    <button class="category active" onclick="filterCategory('All', this)">All</button>
-    <button class="category" onclick="filterCategory('Dairy', this)">Dairy</button>
-    <button class="category" onclick="filterCategory('Bakery', this)">Bakery</button>
-    <button class="category" onclick="filterCategory('Snacks', this)">Snacks</button>
-  </div>
+<div class="products" id="products">
 
-  <div class="products" id="products">
+<div class="product" data-search="libanais classic white pita bread">
+<h3>Libanais Classic White Pita Bread</h3>
+<p>Brand: Libanais</p>
+<p class="status">Halal Listed by Walmart</p>
+<p class="evidence">Source: Walmart product listing. Independent certification not confirmed.</p>
+<a class="view-button" href="https://www.walmart.com/ip/Classic-White-Pita-Bread-10-6-Loaves/14233074919" target="_blank" rel="noopener noreferrer">Check Walmart</a>
+</div>
 
-    <!-- Product 1 -->
-    <div class="product" data-category="Dairy" data-search="arz cream on top yogurt yogurt dairy walmart">
-      <h3>ARZ Cream On Top Yogurt</h3>
-      <div class="brand">ARZ</div>
-      <div class="price">$3.92</div>
-      <div class="status">🟢 Halal Certified</div>
-      <div class="store">Store: Walmart</div>
-      <div class="evidence">
-        Walmart listing states that this product is Halal Certified.
-      </div>
-      <a
-        class="view-button"
-        href="https://www.walmart.com/ip/ARZ-CREAM-ON-TOP-YOGURT-2LB/1150588737"
-        target="_blank"
-        rel="noopener noreferrer">
-        View at Walmart
-      </a>
-    </div>
+<div class="product" data-search="libanais classic white pita pocket bread">
+<h3>Libanais Classic White Pita Pocket</h3>
+<p>Brand: Libanais</p>
+<p class="status">Halal Listed by Walmart</p>
+<p class="evidence">Source: Walmart product listing. Independent certification not confirmed.</p>
+<a class="view-button" href="https://www.walmart.com/ip/Classic-White-Pita-Pocket-6-10-Loaves/14254420174" target="_blank" rel="noopener noreferrer">Check Walmart</a>
+</div>
 
-    <!-- Product 2 -->
-    <div class="product" data-category="Bakery" data-search="libanais classic white pita bread bread bakery walmart">
-      <h3>Libanais Classic White Pita Bread</h3>
-      <div class="brand">Libanais</div>
-      <div class="price">$4.97</div>
-      <div class="status">🟢 Halal Listed</div>
-      <div class="store">Store: Walmart</div>
-      <div class="evidence">
-        Walmart listing states: Kosher, Halal, Vegan.
-      </div>
-      <a
-        class="view-button"
-        href="https://www.walmart.com/ip/Classic-White-Pita-Bread-10-6-Loaves/14233074919"
-        target="_blank"
-        rel="noopener noreferrer">
-        View at Walmart
-      </a>
-    </div>
+<div class="product" data-search="libanais classic lebanese whole wheat bread">
+<h3>Libanais Classic Lebanese Whole Wheat Bread</h3>
+<p>Brand: Libanais</p>
+<p class="status">Halal Listed by Walmart</p>
+<p class="evidence">Source: Walmart product listing. Independent certification not confirmed.</p>
+<a class="view-button" href="https://www.walmart.com/ip/LIBANAIS-CLASSIC-LEBANESE-WHOLE-WHEAT-BREAD-10-6-LOAVES/17500055794" target="_blank" rel="noopener noreferrer">Check Walmart</a>
+</div>
 
-    <!-- Product 3 -->
-    <div class="product" data-category="Bakery" data-search="libanais classic white pita pocket bread bakery walmart">
-      <h3>Libanais Classic White Pita Pocket</h3>
-      <div class="brand">Libanais</div>
-      <div class="price">$4.97</div>
-      <div class="status">🟢 Halal Listed</div>
-      <div class="store">Store: Walmart</div>
-      <div class="evidence">
-        Walmart listing states: Kosher, Halal, Vegan.
-      </div>
-      <a
-        class="view-button"
-        href="https://www.walmart.com/ip/Classic-White-Pita-Pocket-6-10-Loaves/14254420174"
-        target="_blank"
-        rel="noopener noreferrer">
-        View at Walmart
-      </a>
-    </div>
+<div class="product" data-search="libanais garlic pita chips snacks">
+<h3>Libanais Garlic Pita Chips</h3>
+<p>Brand: Libanais</p>
+<p class="status">Halal Listed by Walmart</p>
+<p class="evidence">Source: Walmart product listing. Independent certification not confirmed.</p>
+<a class="view-button" href="https://www.walmart.com/ip/Garlic-Pita-Chips/5503397916" target="_blank" rel="noopener noreferrer">Check Walmart</a>
+</div>
 
-    <!-- Product 4 -->
-    <div class="product" data-category="Bakery" data-search="libanais whole wheat bread bakery walmart">
-      <h3>Libanais Classic Lebanese Whole Wheat Bread</h3>
-      <div class="brand">Libanais</div>
-      <div class="price">$2.44</div>
-      <div class="status">🟢 Halal Listed</div>
-      <div class="store">Store: Walmart</div>
-      <div class="evidence">
-        Walmart listing states: Kosher, Halal, Vegan.
-      </div>
-      <a
-        class="view-button"
-        href="https://www.walmart.com/ip/LIBANAIS-CLASSIC-LEBANESE-WHOLE-WHEAT-BREAD-10-6-LOAVES/17500055794"
-        target="_blank"
-        rel="noopener noreferrer">
-        View at Walmart
-      </a>
-    </div>
+<div class="product" data-search="libanais zaatar pita chips snacks">
+<h3>Libanais Zaatar Pita Chips</h3>
+<p>Brand: Libanais</p>
+<p class="status">Halal Listed by Walmart</p>
+<p class="evidence">Source: Walmart product listing. Independent certification not confirmed.</p>
+<a class="view-button" href="https://www.walmart.com/ip/Zaatar-Pita-Chips/5649003239" target="_blank" rel="noopener noreferrer">Check Walmart</a>
+</div>
 
-    <!-- Product 5 -->
-    <div class="product" data-category="Snacks" data-search="libanais garlic pita chips chips snacks walmart">
-      <h3>Libanais Garlic Pita Chips</h3>
-      <div class="brand">Libanais</div>
-      <div class="price">$5.97</div>
-      <div class="status">🟢 Halal Listed</div>
-      <div class="store">Store: Walmart</div>
-      <div class="evidence">
-        Walmart listing states: Halal, Vegan.
-      </div>
-      <a
-        class="view-button"
-        href="https://www.walmart.com/ip/Garlic-Pita-Chips/5503397916"
-        target="_blank"
-        rel="noopener noreferrer">
-        View at Walmart
-      </a>
-    </div>
+</div>
 
-    <!-- Product 6 -->
-    <div class="product" data-category="Snacks" data-search="libanais zaatar pita chips chips snacks walmart">
-      <h3>Libanais Zaatar Pita Chips</h3>
-      <div class="brand">Libanais</div>
-      <div class="price">$5.97</div>
-      <div class="status">🟢 Halal Listed</div>
-      <div class="store">Store: Walmart</div>
-      <div class="evidence">
-        Walmart listing states: Halal, Vegan.
-      </div>
-      <a
-        class="view-button"
-        href="https://www.walmart.com/ip/Zaatar-Pita-Chips/5649003239"
-        target="_blank"
-        rel="noopener noreferrer">
-        View at Walmart
-      </a>
-    </div>
-
-  </div>
-
-  <div id="noResults" class="no-results">
-    No halal products found.
-  </div>
+<div id="noResults" class="no-results">
+No products found.
+</div>
 
 </div>
 
 <footer>
-  MZ Halal Grocery — Helping you find halal grocery products.
+MZ Halal Grocery — Helping you find halal grocery products.
 </footer>
 
 <script>
+const search = document.getElementById("search");
+const products = document.querySelectorAll(".product");
+const noResults = document.getElementById("noResults");
 
-  let currentCategory = "All";
+search.addEventListener("input", function() {
+  const query = search.value.toLowerCase();
+  let count = 0;
 
-  const searchInput = document.getElementById("search");
-  const products = document.querySelectorAll(".product");
-  const noResults = document.getElementById("noResults");
+  products.forEach(function(product) {
+    const match = product.dataset.search.includes(query);
+    product.style.display = match ? "block" : "none";
+    if (match) count++;
+  });
 
-  function filterProducts() {
-
-    const searchText = searchInput.value.toLowerCase();
-    let visibleCount = 0;
-
-    products.forEach(product => {
-
-      const category = product.dataset.category;
-      const searchableText = product.dataset.search.toLowerCase();
-
-      const categoryMatch =
-        currentCategory === "All" ||
-        category === currentCategory;
-
-      const searchMatch =
-        searchableText.includes(searchText);
-
-      if (categoryMatch && searchMatch) {
-        product.style.display = "block";
-        visibleCount++;
-      } else {
-        product.style.display = "none";
-      }
-
-    });
-
-    noResults.style.display =
-      visibleCount === 0 ? "block" : "none";
-  }
-
-  function filterCategory(category, button) {
-
-    currentCategory = category;
-
-    document.querySelectorAll(".category").forEach(btn => {
-      btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    filterProducts();
-  }
-
-  searchInput.addEventListener("input", filterProducts);
-
+  noResults.style.display = count === 0 ? "block" : "none";
+});
 </script>
 
 </body>
 </html>
+```
